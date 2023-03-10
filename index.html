@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>年号変換</title>
+    <style>
+	body {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 80px;
+    padding: 0;
+  }
+  
+  form {
+    margin-bottom: 20px;
+  }
+  
+  button {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  @media (min-width: 768px) {
+    body {
+      font-size: 40px;
+    }
+  }
+  input[type="date"] {
+    width: 100%;
+    font-size: 1.5em;
+    padding: 10px;
+    border: 5px solid #ccc;
+  }
+  
+      </style>
+  </head>
+  <body>
+    <label>和暦を入力してください（例：昭和63年）</label>
+    <input type="text" id="input" placeholder="和暦を入力">
+    <button onclick="convert()">変換</button>
+    <p id="output"></p>
+    <a href="#" id="next-page-link">飲酒許可へ</a>
+    <script>
+      function convert() {
+        const input = document.getElementById("input").value;
+        const year = input.match(/\d+/)[0];
+        const era = input.match(/[^\d]+/)[0];
+        let adYear;
+        switch(era) {
+          case "明治":
+            adYear = parseInt(year) + 1867;
+            break;
+          case "大正":
+            adYear = parseInt(year) + 1911;
+            break;
+          case "昭和":
+            adYear = parseInt(year) + 1925;
+            break;
+          case "平成":
+            adYear = parseInt(year) + 1988;
+            break;
+          case "令和":
+            adYear = parseInt(year) + 2018;
+            break;
+          default:
+            adYear = "不正な入力です";
+        }
+        document.getElementById("output").innerHTML = adYear;
+      }
+      const nextPageLink = document.getElementById('next-page-link');
+nextPageLink.addEventListener('click', function(event) {
+  event.preventDefault(); // リンクのデフォルトの挙動をキャンセル
+  window.location.href = 'https://himitoyadama.github.io/drinkable.github.io/'; // 次のページのURLにリダイレクト
+});
+    </script>
+  </body>
+</html>
